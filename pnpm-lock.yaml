@@ -23,6 +23,9 @@ importers:
       react-icons:
         specifier: ^5.7.0
         version: 5.7.0(react@19.2.4)
+      swiper:
+        specifier: ^14.0.2
+        version: 14.0.2
       zustand:
         specifier: ^5.0.14
         version: 5.0.14(@types/react@19.2.17)(react@19.2.4)
@@ -1884,6 +1887,10 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  swiper@14.0.2:
+    resolution: {integrity: sha512-KRFQZP0zXUh6MEmSQOJKSw27ARqS884OX/dfBz4i2/It9aixL7svh7/Ng0yZ0FE+PrjrW5vzBcjCfmNnq109XQ==}
+    engines: {node: '>= 4.7.0'}
 
   tailwindcss@4.3.2:
     resolution: {integrity: sha512-WtctNNSH8A9jlMIqxzuYumOHU5uGZyRv0Q5svQl+oEPy5w84YpBxdb7MdqyiSPQge5jTJ6zFQLq0PFygdccSBA==}
@@ -4001,6 +4008,8 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  swiper@14.0.2: {}
 
   tailwindcss@4.3.2: {}
 
