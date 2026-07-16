@@ -42,7 +42,3 @@ next-env.d.ts
 
 /postgres/
 /app/generated/prisma
-
-/app/generated/prisma
-
-/app/generated/prisma
