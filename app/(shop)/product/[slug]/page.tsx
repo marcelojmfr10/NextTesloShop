@@ -1,11 +1,13 @@
+import { getProductBySlug } from "@/app/actions";
 import {
   ProductMobileSlideshow,
   ProductSlideshow,
   QuantitySelector,
   SizeSelector,
+  StockLabel,
 } from "@/app/components";
 import { titleFont } from "@/app/config/fonts";
-import { initialData } from "@/app/seed/seed";
+import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 
 type Params = Promise<{ slug: string }>;
@@ -14,9 +16,28 @@ interface Props {
   params: Params;
 }
 
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const slug = (await params).slug;
+
+  const product = await getProductBySlug(slug);
+
+  return {
+    title: product?.title ?? "Producto no encontrado",
+    description: product?.description ?? "",
+    openGraph: {
+      title: product?.title ?? "Producto no encontrado",
+      description: product?.description ?? "",
+      images: [`/products/${product?.images[1]}`],
+    },
+  };
+}
+
 export default async function Home({ params }: Props) {
   const { slug } = await params;
-  const product = initialData.products.find((product) => product.slug === slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
@@ -43,9 +64,11 @@ export default async function Home({ params }: Props) {
 
       {/* detalles */}
       <div className="col-span-1 px-5">
+        <StockLabel slug={product.slug} />
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>
           {product.title}
         </h1>
+
         <p className="text-lg mb-5">${product.price}</p>
         {/* selector de tallas */}
         <SizeSelector
