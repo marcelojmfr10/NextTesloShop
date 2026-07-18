@@ -2,13 +2,12 @@ import { getProductBySlug } from "@/app/actions";
 import {
   ProductMobileSlideshow,
   ProductSlideshow,
-  QuantitySelector,
-  SizeSelector,
   StockLabel,
 } from "@/app/components";
 import { titleFont } from "@/app/config/fonts";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
+import { AddtoCart } from "./ui/AddtoCart";
 
 type Params = Promise<{ slug: string }>;
 
@@ -70,16 +69,8 @@ export default async function Home({ params }: Props) {
         </h1>
 
         <p className="text-lg mb-5">${product.price}</p>
-        {/* selector de tallas */}
-        <SizeSelector
-          selectedSize={product.sizes[0]}
-          availableSizes={product.sizes}
-        />
 
-        {/* selector de cantidad */}
-        <QuantitySelector quantity={2} />
-
-        <button className="btn-primary my-5">Agregar al carrito</button>
+        <AddtoCart product={product} />
 
         <h3 className="font-bold text-sm">Descripción</h3>
         <p className="font-light">{product.description}</p>
