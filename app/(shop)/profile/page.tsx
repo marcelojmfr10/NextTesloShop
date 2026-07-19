@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth.config";
+import { auth } from "@/app/auth";
 import { Title } from "@/app/components";
 import { redirect } from "next/navigation";
 
