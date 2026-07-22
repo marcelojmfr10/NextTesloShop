@@ -1,5 +1,6 @@
 "use client";
 
+import { placeOrder } from "@/app/actions";
 import { useAddressStore, useCartStore } from "@/app/store";
 import { currencyFormat } from "@/app/utils";
 import clsx from "clsx";
@@ -26,6 +27,9 @@ export const PlaceOrder = () => {
       quantity: product.quantity,
       size: product.size,
     }));
+
+    const resp = await placeOrder(productsToOrder, address);
+    console.log(resp);
 
     setIsPlacingOrder(false);
   };
