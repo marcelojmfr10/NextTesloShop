@@ -116,7 +116,7 @@ export const placeOrder = async (
 
     return {
       ok: true,
-      order: prismaTx.order.id,
+      order: prismaTx.order,
       prismaTx,
     };
   } catch (error: any) {
