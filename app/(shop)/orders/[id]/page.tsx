@@ -2,7 +2,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { IoCardOutline } from "react-icons/io5";
 import clsx from "clsx";
-import { PaypalButton, Title } from "@/app/components";
+import { OrderStatus, PaypalButton, Title } from "@/app/components";
 import { getOrderById } from "@/app/actions";
 import { currencyFormat } from "@/app/utils";
 
@@ -28,21 +28,7 @@ export default async function Home({ params }: Props) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           <div className="flex flex-col mt-5">
-            <div
-              className={clsx(
-                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
-                {
-                  "bg-red-500": !order!.isPaid,
-                  "bg-green-700": order!.isPaid,
-                },
-              )}
-            >
-              <IoCardOutline size={30} />
-              {/* <span className="mx-2">Pendiente de pago</span> */}
-              <span className="mx-2">
-                {order!.isPaid ? "Pagada" : "No pagada"}
-              </span>
-            </div>
+            <OrderStatus isPaid={order?.isPaid ?? false} />
 
             {order!.OrderItem.map((item) => (
               <div
@@ -115,24 +101,10 @@ export default async function Home({ params }: Props) {
 
             <div className="mt-5 mb-2 w-full">
               {order!.isPaid ? (
-                <p className="text-green-700 font-bold">Pagada</p>
+                <OrderStatus isPaid={order?.isPaid ?? false} />
               ) : (
                 <PaypalButton orderId={order!.id} />
               )}
-              {/* <div
-                className={clsx(
-                  "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
-                  {
-                    "bg-red-500": !order!.isPaid,
-                    "bg-green-700": order!.isPaid,
-                  },
-                )}
-              >
-                <IoCardOutline size={30} />
-                <span className="mx-2">
-                  {order!.isPaid ? "Pagada" : "No pagada"}
-                </span>
-              </div> */}
             </div>
           </div>
         </div>
