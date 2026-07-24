@@ -114,7 +114,11 @@ export default async function Home({ params }: Props) {
             </div>
 
             <div className="mt-5 mb-2 w-full">
-              <PaypalButton />
+              {order!.isPaid ? (
+                <p className="text-green-700 font-bold">Pagada</p>
+              ) : (
+                <PaypalButton orderId={order!.id} />
+              )}
               {/* <div
                 className={clsx(
                   "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
